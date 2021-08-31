@@ -1,2 +1,2 @@
-# jianshu_demo
+# jianshu
 简书后台管理系统
