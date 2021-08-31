@@ -1,6 +1,6 @@
 <template>
   <div>
-    粉丝管理
+    文章列表
   </div>
 </template>
 
