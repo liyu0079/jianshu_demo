@@ -8,11 +8,24 @@ const routes = [
     {
       path: '/',
       name: 'Web',
-      component:() => import('@/views/Home')
+      component:() => import('@/views/Home'),
+      redirect: '/article',
+      children: [
+        {
+          path: '/article',
+          name: 'ArticleList',
+          component: () => import('@/views/Web/list.vue')
+        },
+        {
+          path: '/article/:id',
+          name: 'Article',
+          component: () => import('@/views/Web/article.vue')
+        }
+      ]
     },
     {
       path: '/admin',
-      name: 'Admin',
+      name: 'Home',
       component: () =>import('@/views/Home'),
       children:[
         {
@@ -84,7 +97,10 @@ const routes = [
     {
       path: '/login',
       name: 'Login',
-      component: () =>import('@/views/Login')
+      component: () =>import('@/views/Login'),
+      meta: {
+        title: '系统登录'
+      }
     }
 ]
 

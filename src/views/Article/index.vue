@@ -31,7 +31,10 @@
 export default {
   data(){
     return {
-      articles: []
+      articles: [],
+      page: 1,
+      pageSize: 0,
+      count: 0
     }
   },
   created(){

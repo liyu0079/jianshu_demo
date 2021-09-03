@@ -8,6 +8,9 @@ let instance =axios.create({
 //请求拦截
 instance.interceptors.request.use(config=>{
   //请求拦截要处理的内容
+  if (localStorage.token) {
+    config.headers.authorization = 'Bearer ' + localStorage.token;
+}
   return config
 },err=>{
   console.error('请求失败',err)
@@ -18,7 +21,9 @@ instance.interceptors.response.use(res=>{
   //响应拦截要处理的内容
   return res 
 },err=>{
-  console.log('响应失败',err)
+   // 响应错误处理
+    // location.href = '/login'
+    return Promise.reject(err);
 })
 
 /**
@@ -37,7 +42,7 @@ async function http(option ={}){
         params: option.params
       }
     ).then(res=>{
-      result = res
+      result = res.data
     }).catch(err=>{
       result = err
     })
