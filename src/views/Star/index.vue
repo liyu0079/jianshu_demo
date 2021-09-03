@@ -1,6 +1,6 @@
 <template>
   <div>
-    评论管理
+    点赞管理
   </div>
 </template>
 
