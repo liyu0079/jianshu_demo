@@ -6,11 +6,13 @@ import Elementui from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import http from './http'
+import beforeEach from './router/beforeEach'
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(Elementui)
 Vue.prototype.$http = http
+beforeEach(router)
 
 new Vue({
   router,
