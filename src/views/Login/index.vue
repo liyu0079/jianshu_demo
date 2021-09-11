@@ -80,15 +80,15 @@ export default {
               pwd: this.form.pwd,
             },
           }).then((res) => {
-            if (res.code === 200 && this.state) {
-              localStorage.token = res.token;
+            if (res.data.code === 200 && this.state) {
+              localStorage.token = res.data.token;
               this.$router.push({
                 path: "/admin",
               });
             }
             this.$message({
-              message: res.msg,
-              type: res.code === 200 ? "success" : "error",
+              message: res.data.msg,
+              type: res.data.code === 200 ? "success" : "error",
             });
           });
         }

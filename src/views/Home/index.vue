@@ -3,10 +3,10 @@
     <el-header>
         <div class="sys-title">简书后台管理系统</div>
         <div class="header-right">
-            <el-link :underline="false" style="margin-right:20px;">网站首页</el-link>
-            <el-avatar size="small" src=""></el-avatar>
-            <el-link :underline="false">admin</el-link>
-            <el-link :underline="false">退出</el-link>
+            <el-link :underline="false" @click="goWeb" style="margin-right:20px;">网站首页</el-link>
+            <el-avatar size="small" :src="$store.state.user.avatar"></el-avatar>
+            <el-link :underline="false">{{$store.state.user.username}}</el-link>
+            <el-link :underline="false" @click="exit">退出</el-link>
         </div>
     </el-header>
     <el-container>
@@ -65,7 +65,20 @@
 
 <script>
 export default {
-  
+  methods: {
+    exit() {
+      //退出系统
+      localStorage.clear();
+      this.$router.push({
+        path: "/login",
+      });
+    },
+    goWeb() {
+      this.$router.push({
+        path: "/",
+      });
+    },
+  }
 }
 </script>
 

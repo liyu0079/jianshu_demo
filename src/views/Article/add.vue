@@ -33,8 +33,7 @@ export default {
   },
   mounted(){
     //创建wangEditor实例
-    let editor = new Editor('#editor')
-    
+    this.editor = new Editor('#editor')
     //配置上传图片的接口地址
     this.editor.config.uploadImgServer =`http://localhost:3000/upload/editor/img`
     this.editor.config.uploadFileName = 'editorFile'
@@ -46,8 +45,7 @@ export default {
     //设置提示文字
     this.editor.config.placeholder = '编辑文章内容'
 
-    this,editor.create()
-
+    this.editor.create()
   },
   methods: {
     submit(){
@@ -61,15 +59,15 @@ export default {
         params: {
           id: Date.now(),
           title: this.form.title,
-          createTime: `${date.getFullyear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+          createTime: `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
           stemfrom: this.form.stemfrom,
           content,
           author: this.form.author 
         }
       }).then(res=>{
         this.$message({
-          message: res.msg,
-          type: res.code === 200 ? "success" : "error"
+          message: res.data.msg,
+          type: res.data.code === 200 ? "success" : "error"
         });
       })
     }

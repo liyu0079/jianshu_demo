@@ -8,7 +8,7 @@ const routes = [
     {
       path: '/',
       name: 'Web',
-      component:() => import('@/views/Home'),
+      component:() => import('@/views/Web'),
       redirect: '/article',
       children: [
         {
@@ -27,6 +27,7 @@ const routes = [
       path: '/admin',
       name: 'Home',
       component: () =>import('@/views/Home'),
+      redirect: '/admin/users/personal',
       children:[
         {
           path: '/admin/users/personal',
@@ -54,7 +55,7 @@ const routes = [
         },
         {
           path: '/admin/article/add',
-          name: 'AdminArticle',
+          name: 'ArticleAdd',
           component: ()=> import('@/views/Article/add.vue'),
           meta: {
             title: '发布文章'

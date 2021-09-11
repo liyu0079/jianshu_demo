@@ -37,7 +37,7 @@ export default {
   created(){
     let id = this.$route.query.id
     this.$http({
-      path: '/article/update',
+      path: '/article/findOne',
       method: 'get',
       params: {
         id
@@ -52,7 +52,7 @@ export default {
   },
   mounted(){
     //创建wangEditor实例
-    let editor = new Editor('#editor')
+    this.editor = new Editor('#editor')
     
     //配置上传图片的接口地址
     this.editor.config.uploadImgServer =`http://localhost:3000/upload/editor/img`
@@ -65,14 +65,14 @@ export default {
     //设置提示文字
     this.editor.config.placeholder = '编辑文章内容'
 
-    this,editor.create()
+    this.editor.create()
     
   },
   watch:{
      form: {
        handler(val){
          //初始化富文本编辑器的内容
-         this.editor.txt.html(this.form.content)
+         this.editor.txt.html(val.content)
 
        },
        deep:true
@@ -83,7 +83,6 @@ export default {
       //获取文章内容
       let content = this.editor.txt.html()
 
-      let date = new Date()
       this.$http({
         path: '/article/update',
         method: 'post',
@@ -94,9 +93,10 @@ export default {
           content
         }
       }).then(res=>{
+        console.log(res)
         this.$message({
-          message: res.msg,
-          type: res.code === 200 ? "success" : "error"
+          message: res.data.msg,
+          type: res.data.code === 200 ? "success" : "error"
         });
       })
     }

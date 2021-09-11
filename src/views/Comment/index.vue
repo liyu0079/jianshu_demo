@@ -50,6 +50,7 @@ export default {
           author: this.$store.state.user.username
         }
       }).then(res=>{
+        console.log(res)
         this.comments = res.result
         this.page = res.page
         this.pageSize = res.pageSize

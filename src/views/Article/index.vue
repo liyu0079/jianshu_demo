@@ -77,11 +77,12 @@ export default {
             id: row.id
           }
         }).then(res =>{
+          console.log(res)
           this.$message({
-           message: res.msg,
-           type: res.code === 200 ? 'success' : 'error'
+           message: res.data.msg,
+           type: res.data.code === 200 ? 'success' : 'error'
           })
-          if(res.code === 200){
+          if(res.data.code === 200){
              this.getData()
           }
         })
